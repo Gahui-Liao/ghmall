@@ -1,0 +1,30 @@
+server:
+    port: 7788
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/ghmall?useSSL=true
+        username: root
+        password: liaojiaxi
+
+# mybatis
+# 调用data模块下接口，但是mybatis配置需要在主模块下配置
+mybatis:
+    type-aliases-package: com.gahui.ghmall.data.entity
+    mapper-locations:
+        - classpath*:mapper/*.xml
+        - classpath*:dao/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    rowBoundsWithCount: true
+    offsetAsPageNum: true
+
+# 通过配置文件配置是否开启token鉴权，便于开发
+# 0-不开启，1-开启
+tokenAuth:
+    openAuth: false

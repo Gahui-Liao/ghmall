@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.data.mapper.GhAddressMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.data.entity.GhAddress">
+    <id column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="address_country_id" jdbcType="INTEGER" property="addressCountryId" />
+    <result column="address_province_id" jdbcType="INTEGER" property="addressProvinceId" />
+    <result column="address_city_id" jdbcType="INTEGER" property="addressCityId" />
+    <result column="address_district_id" jdbcType="INTEGER" property="addressDistrictId" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="address_contact" jdbcType="VARCHAR" property="addressContact" />
+    <result column="address_phone" jdbcType="VARCHAR" property="addressPhone" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    address_id, user_id, address_country_id, address_province_id, address_city_id, address_district_id, 
+    address_detail, address_contact, address_phone, status, create_time, update_time, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.gahui.ghmall.data.entity.GhAddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from gh_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gahui.ghmall.data.entity.GhAddressExample">
+    delete from gh_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.data.entity.GhAddress">
+    insert into gh_address (address_id, user_id, address_country_id, 
+      address_province_id, address_city_id, address_district_id, 
+      address_detail, address_contact, address_phone, 
+      status, create_time, update_time, 
+      remark)
+    values (#{addressId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{addressCountryId,jdbcType=INTEGER}, 
+      #{addressProvinceId,jdbcType=INTEGER}, #{addressCityId,jdbcType=INTEGER}, #{addressDistrictId,jdbcType=INTEGER}, 
+      #{addressDetail,jdbcType=VARCHAR}, #{addressContact,jdbcType=VARCHAR}, #{addressPhone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.data.entity.GhAddress">
+    insert into gh_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="addressCountryId != null">
+        address_country_id,
+      </if>
+      <if test="addressProvinceId != null">
+        address_province_id,
+      </if>
+      <if test="addressCityId != null">
+        address_city_id,
+      </if>
+      <if test="addressDistrictId != null">
+        address_district_id,
+      </if>
+      <if test="addressDetail != null">
+        address_detail,
+      </if>
+      <if test="addressContact != null">
+        address_contact,
+      </if>
+      <if test="addressPhone != null">
+        address_phone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressCountryId != null">
+        #{addressCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="addressProvinceId != null">
+        #{addressProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="addressCityId != null">
+        #{addressCityId,jdbcType=INTEGER},
+      </if>
+      <if test="addressDistrictId != null">
+        #{addressDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="addressContact != null">
+        #{addressContact,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPhone != null">
+        #{addressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gahui.ghmall.data.entity.GhAddressExample" resultType="java.lang.Long">
+    select count(*) from gh_address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gh_address
+    <set>
+      <if test="record.addressId != null">
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressCountryId != null">
+        address_country_id = #{record.addressCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressProvinceId != null">
+        address_province_id = #{record.addressProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressCityId != null">
+        address_city_id = #{record.addressCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressDistrictId != null">
+        address_district_id = #{record.addressDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressDetail != null">
+        address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressContact != null">
+        address_contact = #{record.addressContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressPhone != null">
+        address_phone = #{record.addressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gh_address
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      address_country_id = #{record.addressCountryId,jdbcType=INTEGER},
+      address_province_id = #{record.addressProvinceId,jdbcType=INTEGER},
+      address_city_id = #{record.addressCityId,jdbcType=INTEGER},
+      address_district_id = #{record.addressDistrictId,jdbcType=INTEGER},
+      address_detail = #{record.addressDetail,jdbcType=VARCHAR},
+      address_contact = #{record.addressContact,jdbcType=VARCHAR},
+      address_phone = #{record.addressPhone,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.data.entity.GhAddress">
+    update gh_address
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="addressCountryId != null">
+        address_country_id = #{addressCountryId,jdbcType=INTEGER},
+      </if>
+      <if test="addressProvinceId != null">
+        address_province_id = #{addressProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="addressCityId != null">
+        address_city_id = #{addressCityId,jdbcType=INTEGER},
+      </if>
+      <if test="addressDistrictId != null">
+        address_district_id = #{addressDistrictId,jdbcType=INTEGER},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="addressContact != null">
+        address_contact = #{addressContact,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPhone != null">
+        address_phone = #{addressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.data.entity.GhAddress">
+    update gh_address
+    set user_id = #{userId,jdbcType=INTEGER},
+      address_country_id = #{addressCountryId,jdbcType=INTEGER},
+      address_province_id = #{addressProvinceId,jdbcType=INTEGER},
+      address_city_id = #{addressCityId,jdbcType=INTEGER},
+      address_district_id = #{addressDistrictId,jdbcType=INTEGER},
+      address_detail = #{addressDetail,jdbcType=VARCHAR},
+      address_contact = #{addressContact,jdbcType=VARCHAR},
+      address_phone = #{addressPhone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>
