@@ -45,7 +45,7 @@ public class GoodsServiceImpl implements GoodsService {
         goodsExample.createCriteria().andGoodsIdEqualTo(goodsId).andStatusEqualTo(Constant.STATUS_EFF);
         GhGoods goods = new GhGoods();
         List<GhGoods> selectGoods = goodsMapper.selectByExample(goodsExample);
-        if(selectGoods != null){
+        if(selectGoods != null && selectGoods.size() > 0){
             goods = selectGoods.get(0);
         }
         GoodsDto goodsDto = GhCopyUtil.copyProperties(goods, GoodsDto.class);
@@ -109,6 +109,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     private void buildGoodsDto(GoodsDto goodsDto) {
+        if(goodsDto.getGoodsId() == null){
+            return;
+        }
         GhGoodsImgExample goodsImgExample = new GhGoodsImgExample();
         goodsImgExample.createCriteria().andGoodsIdEqualTo(goodsDto.getGoodsId()).andStatusEqualTo(Constant.STATUS_EFF);
         goodsDto.setGoodsImgs(GhCopyUtil.copyListProperties(goodsImgMapper.selectByExample(goodsImgExample), GoodsImgDto.class));

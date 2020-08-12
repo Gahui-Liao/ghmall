@@ -29,7 +29,7 @@ public class AppAdvertisementController {
     public GhResponse listNoticeBySeqDesc() {
         GhResponse<List<AdvertisementDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         List<AdvertisementDto> advertisementDtos = advertisementService.listAdvertisementBySeqDesc();
-        if (advertisementDtos != null) {
+        if (advertisementDtos != null && advertisementDtos.size() > 0) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, advertisementDtos);
         }
         log.info("listNoticeBySeqDesc===>{}", response);

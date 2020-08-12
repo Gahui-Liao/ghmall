@@ -17,7 +17,7 @@
 
         <!--数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/ghmall" userId="root" password="root">
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/ghmall" userId="root" password="liaojiaxi">
         </jdbcConnection>
         <!--默认false Java type resolver will always use java.math.BigDecimal if
             the database column is of type DECIMAL or NUMERIC. -->
@@ -43,28 +43,28 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等
-        <table tableName="gh_advertisement"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_address"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_category"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
+<!--        对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
+<!--        <table tableName="gh_advertisement"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_address"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_category"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
         <table tableName="gh_goods"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
@@ -72,34 +72,34 @@
             <columnOverride column="enabled" javaType="boolean"/>
             <columnOverride column="expired" javaType="boolean"/>
         </table>
-        <table tableName="gh_goods_spec"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_goods_img"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_cart"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_order"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
+<!--        <table tableName="gh_goods_spec"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_goods_img"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_cart"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_order"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
         <table tableName="gh_order_item"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
@@ -107,47 +107,47 @@
             <columnOverride column="enabled" javaType="boolean"/>
             <columnOverride column="expired" javaType="boolean"/>
         </table>
-        <table tableName="gh_delivery"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_user"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_notice"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_comment"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_region"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
-        <table tableName="gh_goods_gallery"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <columnOverride column="enabled" javaType="boolean"/>
-            <columnOverride column="expired" javaType="boolean"/>
-        </table>
+<!--        <table tableName="gh_delivery"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_user"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_notice"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_comment"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_region"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
+<!--        <table tableName="gh_goods_gallery"-->
+<!--               enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true"-->
+<!--               selectByExampleQueryId="true">-->
+<!--            <columnOverride column="enabled" javaType="boolean"/>-->
+<!--            <columnOverride column="expired" javaType="boolean"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

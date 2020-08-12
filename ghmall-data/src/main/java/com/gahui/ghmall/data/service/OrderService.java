@@ -16,7 +16,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    OrderDto getOrderByOrderId(int orderId, int orderItemPageNum, int orderItemPageSize);
+    OrderDto getOrderByOrderId(int orderId);
 
     /**
      * 根据用户Id查询订单
@@ -24,5 +24,5 @@ public interface OrderService {
      * @param userId
      * @return
      */
-    PageInfo<OrderDto> getOrderByUserId(int userId);
+    PageInfo<OrderDto> getOrderByUserId(int userId, int pageNum, int pageSize);
 }

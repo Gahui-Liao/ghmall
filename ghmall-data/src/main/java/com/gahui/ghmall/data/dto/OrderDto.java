@@ -1,5 +1,6 @@
 package com.gahui.ghmall.data.dto;
 
+import com.github.pagehelper.PageInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,6 +30,4 @@ public class OrderDto extends BaseDto {
     private BigDecimal orderDiscountAmount;
 
     private Integer userId;
-
-    private List<OrderItemDto> orderItems;
 }

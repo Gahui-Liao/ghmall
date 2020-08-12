@@ -30,7 +30,7 @@ public class AppCategoryController {
     public GhResponse listCategoryByCategoryIdAsc() {
         GhResponse<List<CategoryDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         List<CategoryDto> categoryDtos = categoryService.listCategoryByCategoryIdAsc();
-        if (categoryDtos != null) {
+        if (categoryDtos != null && categoryDtos.size() > 0) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, categoryDtos);
         }
         log.info("listCategoryByCategoryIdAsc==={}", response);

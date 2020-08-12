@@ -29,7 +29,7 @@ public class AppNoticeController {
     public GhResponse listNoticeBySeqDesc(){
         GhResponse<List<NoticeDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         List<NoticeDto> noticeDtos = noticeService.listNoticeBySeqDesc();
-        if (noticeDtos != null) {
+        if (noticeDtos != null && noticeDtos.size() > 0) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, noticeDtos);
         }
         log.info("listNoticeBySeqDesc===>{}", response);

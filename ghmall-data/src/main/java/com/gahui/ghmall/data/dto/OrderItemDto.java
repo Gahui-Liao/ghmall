@@ -21,6 +21,8 @@ public class OrderItemDto extends BaseDto {
 
     private Integer goodsId;
 
+    private Integer goodsNum;
+
     private Byte orderItemFlowNum;
 
     private Byte orderItemPayNum;
