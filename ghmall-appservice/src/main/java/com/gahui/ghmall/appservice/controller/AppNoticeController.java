@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 通知类相关接口
  * @author: liaojiaxi
  * @date: 2020/8/7
  **/

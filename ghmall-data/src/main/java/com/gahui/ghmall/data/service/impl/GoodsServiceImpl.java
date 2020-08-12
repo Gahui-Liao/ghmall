@@ -6,10 +6,7 @@ import com.gahui.ghmall.data.dto.GoodsDto;
 import com.gahui.ghmall.data.dto.GoodsGalleryDto;
 import com.gahui.ghmall.data.dto.GoodsImgDto;
 import com.gahui.ghmall.data.dto.GoodsSpecDto;
-import com.gahui.ghmall.data.entity.GhGoodsExample;
-import com.gahui.ghmall.data.entity.GhGoodsGalleryExample;
-import com.gahui.ghmall.data.entity.GhGoodsImgExample;
-import com.gahui.ghmall.data.entity.GhGoodsSpecExample;
+import com.gahui.ghmall.data.entity.*;
 import com.gahui.ghmall.data.mapper.GhGoodsGalleryMapper;
 import com.gahui.ghmall.data.mapper.GhGoodsImgMapper;
 import com.gahui.ghmall.data.mapper.GhGoodsMapper;
@@ -46,7 +43,12 @@ public class GoodsServiceImpl implements GoodsService {
     public GoodsDto getGoodsByGoodsId(int goodsId) {
         GhGoodsExample goodsExample = new GhGoodsExample();
         goodsExample.createCriteria().andGoodsIdEqualTo(goodsId).andStatusEqualTo(Constant.STATUS_EFF);
-        GoodsDto goodsDto = GhCopyUtil.copyProperties(goodsMapper.selectByPrimaryKey(goodsId), GoodsDto.class);
+        GhGoods goods = new GhGoods();
+        List<GhGoods> selectGoods = goodsMapper.selectByExample(goodsExample);
+        if(selectGoods != null){
+            goods = selectGoods.get(0);
+        }
+        GoodsDto goodsDto = GhCopyUtil.copyProperties(goods, GoodsDto.class);
         if (goodsDto != null) {
             this.buildGoodsDto(goodsDto);
         }

@@ -34,4 +34,6 @@ public class OrderItemDto extends BaseDto {
     private Integer userId;
 
     private Integer commentId;
+
+    private GoodsDto goods;
 }
