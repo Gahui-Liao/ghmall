@@ -24,5 +24,5 @@ public interface OrderService {
      * @param userId
      * @return
      */
-    PageInfo<OrderDto> getOrderByUserId(int userId, int pageNum, int pageSize);
+    PageInfo<OrderDto> listOrderByUserId(int userId, int pageNum, int pageSize);
 }

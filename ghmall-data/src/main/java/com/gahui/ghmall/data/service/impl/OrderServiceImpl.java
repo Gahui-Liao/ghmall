@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<OrderDto> getOrderByUserId(int userId, int pageNum, int pageSize) {
+    public PageInfo<OrderDto> listOrderByUserId(int userId, int pageNum, int pageSize) {
         GhOrderExample example = new GhOrderExample();
         example.createCriteria().andUserIdEqualTo(userId).andStatusEqualTo(Constant.STATUS_EFF);
         return this.listOrderItemByExample(example, pageNum, pageSize);
@@ -53,6 +54,9 @@ public class OrderServiceImpl implements OrderService {
         pageSize = pageSize > Constant.PAGE_SIZE_LIMIT ? Constant.PAGE_SIZE_LIMIT : pageSize;
         PageHelper.startPage(pageNum, pageSize);
         List<OrderDto> orderDtos = GhCopyUtil.copyListProperties(orderMapper.selectByExample(example), OrderDto.class);
+        if(orderDtos == null){
+            orderDtos = new ArrayList<>();
+        }
         return new PageInfo<>(orderDtos);
     }
 }

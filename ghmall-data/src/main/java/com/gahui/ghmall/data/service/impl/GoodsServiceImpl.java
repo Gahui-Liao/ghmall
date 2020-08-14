@@ -45,7 +45,7 @@ public class GoodsServiceImpl implements GoodsService {
         goodsExample.createCriteria().andGoodsIdEqualTo(goodsId).andStatusEqualTo(Constant.STATUS_EFF);
         GhGoods goods = null;
         List<GhGoods> selectGoods = goodsMapper.selectByExample(goodsExample);
-        if(selectGoods != null && selectGoods.size() > 0){
+        if (selectGoods != null && selectGoods.size() > 0) {
             goods = selectGoods.get(0);
         }
         GoodsDto goodsDto = GhCopyUtil.copyProperties(goods, GoodsDto.class);
@@ -59,7 +59,7 @@ public class GoodsServiceImpl implements GoodsService {
     public PageInfo<GoodsDto> listGoodsByCategoryId(int categoryId, int pageNum, int pageSize) {
         GhGoodsExample example = new GhGoodsExample();
         example.createCriteria().andCategoryIdEqualTo(categoryId).andStatusEqualTo(Constant.STATUS_EFF);
-        return  this.listGoodsByGoodsExample(example,pageNum,pageSize);
+        return this.listGoodsByGoodsExample(example, pageNum, pageSize);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class GoodsServiceImpl implements GoodsService {
         GhGoodsExample example = new GhGoodsExample();
         example.createCriteria().andStatusEqualTo(Constant.STATUS_EFF);
         example.setOrderByClause(Constant.GOODS_ORDER_BY_CREATE_TIME_DESC);
-        return  this.listGoodsByGoodsExample(example,pageNum,pageSize);
+        return this.listGoodsByGoodsExample(example, pageNum, pageSize);
     }
 
     @Override
@@ -75,21 +75,21 @@ public class GoodsServiceImpl implements GoodsService {
         GhGoodsExample example = new GhGoodsExample();
         example.createCriteria().andStatusEqualTo(Constant.STATUS_EFF);
         example.setOrderByClause(Constant.GOODS_ORDER_BY_SELL_NUM_DESC);
-        return  this.listGoodsByGoodsExample(example,pageNum,pageSize);
+        return this.listGoodsByGoodsExample(example, pageNum, pageSize);
     }
 
     @Override
     public PageInfo<GoodsDto> listGoodsByBrief(String goodsBrief, int pageNum, int pageSize) {
         GhGoodsExample example = new GhGoodsExample();
         example.createCriteria().andGoodsBriefLike(goodsBrief).andStatusEqualTo(Constant.STATUS_EFF);
-        return  this.listGoodsByGoodsExample(example,pageNum,pageSize);
+        return this.listGoodsByGoodsExample(example, pageNum, pageSize);
     }
 
     @Override
     public PageInfo<GoodsDto> listGoods(int pageNum, int pageSize) {
         GhGoodsExample example = new GhGoodsExample();
         example.createCriteria().andStatusEqualTo(Constant.STATUS_EFF);
-        return  this.listGoodsByGoodsExample(example,pageNum,pageSize);
+        return this.listGoodsByGoodsExample(example, pageNum, pageSize);
     }
 
 
@@ -102,14 +102,13 @@ public class GoodsServiceImpl implements GoodsService {
             for (GoodsDto temp : goodsDtos) {
                 buildGoodsDto(temp);
             }
-        } else {
-            return null;
+            return new PageInfo<>(goodsDtos);
         }
-        return new PageInfo<>(goodsDtos);
+        return null;
     }
 
     private void buildGoodsDto(GoodsDto goodsDto) {
-        if(goodsDto.getGoodsId() == null){
+        if (goodsDto.getGoodsId() == null) {
             return;
         }
         GhGoodsImgExample goodsImgExample = new GhGoodsImgExample();

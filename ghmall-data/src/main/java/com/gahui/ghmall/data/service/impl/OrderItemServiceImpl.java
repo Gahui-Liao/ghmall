@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,14 +47,14 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public PageInfo<OrderItemDto> getOrderItemByOrderId(int orderId, int pageNum, int pageSize) {
+    public PageInfo<OrderItemDto> listOrderItemByOrderId(int orderId, int pageNum, int pageSize) {
         GhOrderItemExample example = new GhOrderItemExample();
         example.createCriteria().andOrderIdEqualTo(orderId).andStatusEqualTo(Constant.STATUS_EFF);
         return this.listOrderItemByExample(example, pageNum, pageSize);
     }
 
     @Override
-    public PageInfo<OrderItemDto> getOrderItemByUserId(int userId, int pageNum, int pageSize) {
+    public PageInfo<OrderItemDto> listOrderItemByUserId(int userId, int pageNum, int pageSize) {
         GhOrderItemExample example = new GhOrderItemExample();
         example.createCriteria().andUserIdEqualTo(userId).andStatusEqualTo(Constant.STATUS_EFF);
         return this.listOrderItemByExample(example, pageNum, pageSize);
@@ -68,7 +69,8 @@ public class OrderItemServiceImpl implements OrderItemService {
             for (OrderItemDto temp : orderItemDtos) {
                 temp.setGoods(goodsService.getGoodsByGoodsId(temp.getGoodsId()));
             }
+            return new PageInfo<>(orderItemDtos);
         }
-        return new PageInfo<>(orderItemDtos);
+        return null;
     }
 }
