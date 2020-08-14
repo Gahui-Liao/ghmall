@@ -36,7 +36,7 @@ public class AppGoodsController {
         return response;
     }
 
-    @GetMapping("/page/{categoryId}/{pageNum}/{pageSize}")
+    @GetMapping("/{categoryId}/{pageNum}/{pageSize}")
     public GhResponse listGoodsByCategoryId(@PathVariable("categoryId") int categoryId, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         GhResponse<PageInfo<GoodsDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         PageInfo<GoodsDto> pageInfo = goodsService.listGoodsByCategoryId(categoryId, pageNum, pageSize);
@@ -47,7 +47,7 @@ public class AppGoodsController {
         return response;
     }
 
-    @GetMapping("/page/new/{pageNum}/{pageSize}")
+    @GetMapping("/new/{pageNum}/{pageSize}")
     public GhResponse listGoodsByCreateTimeDesc(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         GhResponse<PageInfo<GoodsDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         PageInfo<GoodsDto> pageInfo = goodsService.listGoodsByCreateTimeDesc(pageNum, pageSize);
@@ -58,7 +58,7 @@ public class AppGoodsController {
         return response;
     }
 
-    @GetMapping("/page/sellWell/{pageNum}/{pageSize}")
+    @GetMapping("/sellWell/{pageNum}/{pageSize}")
     public GhResponse listGoodsBySellNumDesc(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         GhResponse<PageInfo<GoodsDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         PageInfo<GoodsDto> pageInfo = goodsService.listGoodsBySellNumDesc(pageNum, pageSize);
@@ -69,7 +69,7 @@ public class AppGoodsController {
         return response;
     }
 
-    @GetMapping("/page/search/{pageNum}/{pageSize}")
+    @GetMapping("/search/{pageNum}/{pageSize}")
     public GhResponse listGoodsByBrief(@RequestParam("brief") String brief, @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         GhResponse<PageInfo<GoodsDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         PageInfo<GoodsDto> pageInfo = goodsService.listGoodsByBrief(brief, pageNum, pageSize);
@@ -81,7 +81,7 @@ public class AppGoodsController {
     }
 
 
-    @GetMapping("/page/{pageNum}/{pageSize}")
+    @GetMapping("/{pageNum}/{pageSize}")
     public GhResponse listGoods(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         GhResponse<PageInfo<GoodsDto>> response = new GhResponse<>(GhResponseEnum.FAIL);
         PageInfo<GoodsDto> pageInfo = goodsService.listGoods(pageNum, pageSize);
