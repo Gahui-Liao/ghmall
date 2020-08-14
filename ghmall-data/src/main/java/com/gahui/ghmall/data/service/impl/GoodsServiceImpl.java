@@ -43,7 +43,7 @@ public class GoodsServiceImpl implements GoodsService {
     public GoodsDto getGoodsByGoodsId(int goodsId) {
         GhGoodsExample goodsExample = new GhGoodsExample();
         goodsExample.createCriteria().andGoodsIdEqualTo(goodsId).andStatusEqualTo(Constant.STATUS_EFF);
-        GhGoods goods = new GhGoods();
+        GhGoods goods = null;
         List<GhGoods> selectGoods = goodsMapper.selectByExample(goodsExample);
         if(selectGoods != null && selectGoods.size() > 0){
             goods = selectGoods.get(0);

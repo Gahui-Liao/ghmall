@@ -29,7 +29,7 @@ public class AppGoodsController {
     public GhResponse getGoodsByGoodsId(@PathVariable("goodsId") int goodsId) {
         GhResponse<GoodsDto> response = new GhResponse<>(GhResponseEnum.FAIL);
         GoodsDto goodsDto = goodsService.getGoodsByGoodsId(goodsId);
-        if (goodsDto != null && goodsDto.getGoodsId() != null) {
+        if (goodsDto != null) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, goodsDto);
         }
         log.info("getGoodsByGoodsId===>{}", response);

@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
         GhOrderExample example = new GhOrderExample();
         example.createCriteria().andOrderIdEqualTo(orderId).andStatusEqualTo(Constant.STATUS_EFF);
         List<GhOrder> selectOrders = orderMapper.selectByExample(example);
-        GhOrder order = new GhOrder();
+        GhOrder order = null;
         if (selectOrders != null && selectOrders.size() > 0) {
             order = selectOrders.get(0);
         }

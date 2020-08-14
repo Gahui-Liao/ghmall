@@ -29,7 +29,7 @@ public class AppOrderController {
     public GhResponse getOrderByOrderId(@PathVariable("orderId") int orderId){
         GhResponse<OrderDto> response = new GhResponse<>(GhResponseEnum.FAIL);
         OrderDto orderDto = orderService.getOrderByOrderId(orderId);
-        if (orderDto != null && orderDto.getOrderId() != null) {
+        if (orderDto != null) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, orderDto);
         }
         log.info("getOrderByOrderId===>{}", response);
