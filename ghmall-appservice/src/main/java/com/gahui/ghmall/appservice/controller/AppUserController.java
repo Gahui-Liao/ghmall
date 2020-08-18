@@ -30,7 +30,7 @@ public class AppUserController {
     public GhResponse loginByWeChat(@RequestBody AppUserInfoVo userInfo) {
         GhResponse<String> response = new GhResponse<>(GhResponseEnum.FAIL);
         log.info("userinfo===>{}", userInfo);
-        String token = appUserService.loginByWeChat(null);
+        String token = appUserService.loginByWeChat(userInfo);
         if (!StringUtils.isEmpty(token)) {
             response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, token);
         }
