@@ -12,9 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 
-import static com.gahui.ghmall.comm.constant.Constant.RSP_BODY;
-import static com.gahui.ghmall.comm.constant.Constant.RSP_HEAD;
-
 /**
  * @description: http请求工具类
  * @author: liaojiaxi
@@ -37,7 +34,7 @@ public class GhHttpUtil {
      */
     public static JSONObject get(String url, Map<String, String> headers, Map<String, String> params) {
         HttpEntity<String> requestEntity = new HttpEntity<>(null, buidHeaders(headers));
-        ResponseEntity responseEntity = restTemplate().exchange(buidFinalUrl(url, params), HttpMethod.GET, requestEntity, JSONObject.class);
+        ResponseEntity responseEntity = restTemplate().exchange(buidFinalUrl(url, params), HttpMethod.GET, requestEntity, String.class);
         return buidResponse(responseEntity);
     }
 
@@ -51,7 +48,7 @@ public class GhHttpUtil {
      */
     public static JSONObject post(String url, JSONObject data, Map<String, String> headers) {
         HttpEntity<JSONObject> requestEntity = new HttpEntity<>(data, buidHeaders(headers));
-        ResponseEntity responseEntity = restTemplate().exchange(url, HttpMethod.POST, requestEntity, JSONObject.class);
+        ResponseEntity responseEntity = restTemplate().exchange(url, HttpMethod.POST, requestEntity, String.class);
         return buidResponse(responseEntity);
     }
 
@@ -74,8 +71,10 @@ public class GhHttpUtil {
         httpHeaders.add("Accept", "application/json");
         httpHeaders.add("Content-Encoding", "UTF-8");
         httpHeaders.add("Content-Type", "application/json; charset=UTF-8");
-        for (String s : headers.keySet()) {
-            httpHeaders.add(s, headers.get(s));
+        if (headers != null) {
+            for (String s : headers.keySet()) {
+                httpHeaders.add(s, headers.get(s));
+            }
         }
         return httpHeaders;
     }
@@ -89,8 +88,10 @@ public class GhHttpUtil {
      */
     private static String buidFinalUrl(String url, Map<String, String> params) {
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
-        for (String s : params.keySet()) {
-            builder.queryParam(s, params.get(s));
+        if (params != null) {
+            for (String s : params.keySet()) {
+                builder.queryParam(s, params.get(s));
+            }
         }
         return builder.build().toString();
     }

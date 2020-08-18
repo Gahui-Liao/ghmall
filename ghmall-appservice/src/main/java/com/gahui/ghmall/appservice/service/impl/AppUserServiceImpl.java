@@ -10,6 +10,7 @@ import com.gahui.ghmall.data.dto.UserDto;
 import com.gahui.ghmall.data.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -43,8 +44,14 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public String loginByWeChat(AppUserInfoVo userInfo) {
         String openid = this.getWxOpenid(userInfo.getCode());
+        if (StringUtils.isEmpty(openid)) {
+            return null;
+        }
+        UserDto userDto = null;
         // 从数据库中获取用户信息
-        UserDto userDto = userService.getUserByWetChatOpenId(openid);
+        if (!StringUtils.isEmpty(openid)) {
+            userDto = userService.getUserByWetChatOpenId(openid);
+        }
         // 如为第一次登录，保存用户信息
         if (userDto == null) {
             this.registerNewUser(userInfo, openid);
@@ -62,7 +69,10 @@ public class AppUserServiceImpl implements AppUserService {
 
         String reqCode = "200";
         if (reqCode.equals(wxResponse.getString(Constant.RSP_CODE))) {
-            return wxResponse.get("openid").toString();
+            String openId = wxResponse.getString("openid");
+            if (!StringUtils.isEmpty(openId)) {
+                return openId;
+            }
         }
         return null;
     }
