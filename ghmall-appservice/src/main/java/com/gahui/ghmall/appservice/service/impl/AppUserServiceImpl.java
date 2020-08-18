@@ -69,7 +69,8 @@ public class AppUserServiceImpl implements AppUserService {
 
         String reqCode = "200";
         if (reqCode.equals(wxResponse.getString(Constant.RSP_CODE))) {
-            String openId = wxResponse.getString("openid");
+            JSONObject body = (JSONObject) wxResponse.get(Constant.RSP_BODY);
+            String openId = body.getString("openid");
             if (!StringUtils.isEmpty(openId)) {
                 return openId;
             }

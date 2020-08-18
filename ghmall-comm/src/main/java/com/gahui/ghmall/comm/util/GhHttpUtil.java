@@ -56,7 +56,7 @@ public class GhHttpUtil {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(Constant.RSP_CODE, responseEntity.getStatusCodeValue());
         jsonObject.put(Constant.RSP_HEAD, responseEntity.getHeaders());
-        jsonObject.put(Constant.RSP_BODY, responseEntity.getBody());
+        jsonObject.put(Constant.RSP_BODY, JSONObject.parseObject((String) responseEntity.getBody()));
         return jsonObject;
     }
 
