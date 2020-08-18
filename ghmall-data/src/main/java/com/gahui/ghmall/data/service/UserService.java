@@ -12,4 +12,6 @@ public interface UserService {
     UserDto getUserByWetChatOpenId(String weChatOpenId);
 
     int insertUser(UserDto userDto);
+
+    UserDto getUserByUserId(int userId);
 }

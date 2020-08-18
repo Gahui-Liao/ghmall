@@ -3,10 +3,13 @@ package com.gahui.ghmall.appservice.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.gahui.ghmall.appservice.service.AppUserService;
 import com.gahui.ghmall.appservice.service.TokenService;
+import com.gahui.ghmall.appservice.vo.AppLoginResponseVo;
 import com.gahui.ghmall.appservice.vo.AppUserInfoVo;
 import com.gahui.ghmall.comm.constant.Constant;
+import com.gahui.ghmall.comm.util.GhCopyUtil;
 import com.gahui.ghmall.comm.util.GhHttpUtil;
 import com.gahui.ghmall.data.dto.UserDto;
+import com.gahui.ghmall.data.entity.GhUserExample;
 import com.gahui.ghmall.data.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -42,7 +45,7 @@ public class AppUserServiceImpl implements AppUserService {
     private String grantType;
 
     @Override
-    public String loginByWeChat(AppUserInfoVo userInfo) {
+    public AppLoginResponseVo loginByWeChat(AppUserInfoVo userInfo) {
         String openid = this.getWxOpenid(userInfo.getCode());
         if (StringUtils.isEmpty(openid)) {
             return null;
@@ -56,7 +59,17 @@ public class AppUserServiceImpl implements AppUserService {
         if (userDto == null) {
             this.registerNewUser(userInfo, openid);
         }
-        return tokenService.getToken(openid);
+        String token = tokenService.getToken(openid);
+        UserDto user = userService.getUserByWetChatOpenId(openid);
+        AppLoginResponseVo loginResponseVo = new AppLoginResponseVo();
+        loginResponseVo.setToken(token);
+        loginResponseVo.setUserDto(user);
+        return loginResponseVo;
+    }
+
+    @Override
+    public UserDto getUserByUserId(int userId) {
+        return userService.getUserByUserId(userId);
     }
 
     private String getWxOpenid(String jsCode) {

@@ -40,4 +40,9 @@ public class UserServicerImpl implements UserService {
         GhUser user = GhCopyUtil.copyProperties(userDto,GhUser.class);
         return userMapper.insertSelective(user);
     }
+
+    @Override
+    public UserDto getUserByUserId(int userId) {
+        return GhCopyUtil.copyProperties(userMapper.selectByPrimaryKey(userId),UserDto.class);
+    }
 }

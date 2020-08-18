@@ -1,9 +1,11 @@
 package com.gahui.ghmall.appservice.controller;
 
 import com.gahui.ghmall.appservice.service.AppUserService;
+import com.gahui.ghmall.appservice.vo.AppLoginResponseVo;
 import com.gahui.ghmall.appservice.vo.AppUserInfoVo;
 import com.gahui.ghmall.comm.en.GhResponseEnum;
 import com.gahui.ghmall.comm.vo.GhResponse;
+import com.gahui.ghmall.data.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,13 +30,13 @@ public class AppUserController {
 
     @PostMapping("/login/wechat")
     public GhResponse loginByWeChat(@RequestBody AppUserInfoVo userInfo) {
-        GhResponse<String> response = new GhResponse<>(GhResponseEnum.FAIL);
+        GhResponse<AppLoginResponseVo> response = new GhResponse<>(GhResponseEnum.FAIL);
         log.info("userinfo===>{}", userInfo);
-        String token = appUserService.loginByWeChat(userInfo);
-        if (!StringUtils.isEmpty(token)) {
-            response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, token);
+        AppLoginResponseVo loginResponseVo = appUserService.loginByWeChat(userInfo);
+        if (loginResponseVo != null) {
+            response.setCodeAndMessageAndDataByEnum(GhResponseEnum.SUCCESS, loginResponseVo);
         }
-        log.info("loginByWeChat**token**===>{}", response);
+        log.info("loginByWeChat===>{}", response);
         return response;
     }
 }
