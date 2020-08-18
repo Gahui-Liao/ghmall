@@ -28,3 +28,11 @@ pagehelper:
 # 0-不开启，1-开启
 tokenAuth:
     openAuth: false
+
+
+# 微信相关配置
+weChat:
+    appId: wxda213835f42a4cf3
+    appSecret: 8b3f2f7d6527cb863ecfe634cc747d57
+    grantType: authorization_code
+    getUserInfoUrl: https://api.weixin.qq.com/sns/jscode2session

@@ -13,10 +13,10 @@ public interface TokenService {
 
     /**
      * 生成token
-     * @param userDto
+     * @param wxOpenId
      * @return
      */
-    String getToken(UserDto userDto);
+    String getToken(String wxOpenId);
 
     /**
      * 解析token

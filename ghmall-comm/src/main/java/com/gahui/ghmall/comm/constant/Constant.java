@@ -81,4 +81,11 @@ public class Constant {
      */
     public final static String TOKEN_PASS_WORD = "password";
 
+    /**
+     * http工具类常量
+     */
+    public final static String RSP_CODE = "status";
+    public final static String RSP_HEAD = "headers";
+    public final static String RSP_BODY = "body";
+
 }

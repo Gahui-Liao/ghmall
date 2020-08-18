@@ -23,7 +23,7 @@ import java.util.Map;
 public class TokenServiceImpl implements TokenService {
 
     @Override
-    public String getToken(UserDto userDto) {
+    public String getToken(String wxOpenId) {
 
         String token;
         try {
@@ -31,10 +31,9 @@ public class TokenServiceImpl implements TokenService {
             Date date = new Date(System.currentTimeMillis() + Constant.TOKEN_EXPIRED_TIME);
             //秘钥及加密算法
             Algorithm algorithm = Algorithm.HMAC256(Constant.TOKEN_ALGORITHM_SECRET);
-            //携带username，password信息，生成签名
+            //携带userId信息，生成签名
             token = JWT.create()
-                    .withClaim("username", userDto.getUserName())
-                    .withClaim("password", userDto.getUserPassword())
+                    .withClaim("openId", wxOpenId)
                     .withExpiresAt(date)
                     .sign(algorithm);
         } catch (Exception e) {
